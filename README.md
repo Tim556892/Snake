@@ -46,16 +46,16 @@ class MoveStrategy(ABC):
         pass
 ```
 - It means that I abstract the concept of moving logic from the game logic. It makes code more readable.
-# Inheritance
+## c. Inheritance
 - **Inheritance** allows you to create new classes (subclasses) that inherit properties and behaviors from existing classes (superclasses). 
 - You can see inheritance in *strategies.py* module, where my parent class is `MoveStrategy` and child classes are `KeyboardMoveStrategy`, `AIMoveStrategy`.
 - Inheritance helps to avoid the dupllication of the code and specialize behaviour in child class
-# Encapsulation
+## d. Encapsulation
 - **Encapsulation** is a way to hide internal data of attributes, methods.
 - There are 3 types of access controls: *public*, *private*, *protected*.
 - In mu course work more often I was using private access control. For example: `_body`, `_direction`, `_positions_set` and e.t.c.
 - I do not access private attributes directly but through *get methods*, so that theu would not be changed directly, outside the class.
-# Composition
+## e. Composition
 - **Composition** is a case when one object can not indepentelntly exict without.
 ```Python
   class Game:
@@ -65,7 +65,7 @@ class MoveStrategy(ABC):
         self._strategy = KeyboardMoveStrategy()
  ```
  - In this code inside game class we create attributes, that can not exict independently without Game class.
-# Strategy design pattern
+## f. Strategy design pattern
   - **Strategy design pattern** allows easily change the behaviour of the object
   - *Strategy* consists of 3 main components: 
   
@@ -92,7 +92,7 @@ class MoveStrategy(ABC):
     	def get_direction(...): ...
 ```
 - Strategy design patterns allows to add new functionality, without changing the code, which makes the code more flexible and extensible
-# Reading from file
+## g. Reading from file
 - `_load_highscore` method checks if `scores.txt` exict, reads all numeric lines, extracts the maximum score:
  ```Python
   def _load_highscore(self):
@@ -103,7 +103,7 @@ class MoveStrategy(ABC):
                       for line in file if line.strip().isdigit()]
             return max(scores) if scores else 0
 ```
-# Writing to file
+## h. Writing to file
 - `_save_score` adds the new score, limits the list to `MAX_SCORES` value, write the updated scores to `scores.txt`:
   
 ```Python
@@ -119,5 +119,5 @@ def _save_score(self):
             for score in scores:
                 file.write(f"{score}\n")
 ```
-## Results and Summary
+# Results and Summary
 - Althogh the code is not ideal and has some serious issues such as absense of unit tests, which means that code not always might work as it should be, it still covers most of the requirements. Because of the *Strategy* design pattern, it is a lot more easier to add some new functionality related with movement or even add a new *Strategy* design pattern, that might be responsible for different type of foods, different type of snakes and e.t.c.. The biggest issue for me was the fact that I was not able to write unit tests, because compilor could not find modules like *snake*, *fruit*. I did everything ti fix this problem but unfortunately because of the lack of time I was not able to figure out this problem.
